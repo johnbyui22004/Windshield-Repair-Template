@@ -212,6 +212,13 @@ textarea:focus-visible {
   justify-content: space-between;
   padding-top: 12px;
   padding-bottom: 12px;
+  gap: 16px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .logo {
@@ -304,7 +311,10 @@ textarea:focus-visible {
 }
 
 .header-call {
-  margin: 16px 20px 20px;
+  margin: 0;
+  padding: 10px 16px;
+  min-height: 42px;
+  font-size: 14px;
 }
 
 /* -------------------------------------------------------------
@@ -794,6 +804,20 @@ body {
 }
 
 /* =================================================================
+   MOBILE NARROW (≤ 480px)
+   ================================================================= */
+@media (max-width: 480px) {
+  .logo-text small {
+    display: none;
+  }
+  .header-call {
+    padding: 8px 12px;
+    font-size: 13px;
+    min-height: 38px;
+  }
+}
+
+/* =================================================================
    TABLET & UP  (≥ 640px)
    ================================================================= */
 @media (min-width: 640px) {
@@ -844,6 +868,7 @@ body {
     overflow: visible;
     background: transparent;
     border-bottom: none;
+    margin-left: auto;
   }
 
   .primary-nav ul {
@@ -859,10 +884,15 @@ body {
     font-size: 15px;
   }
 
+  .header-actions {
+    margin-left: 24px;
+  }
+
   .header-call {
-    margin: 0 0 0 8px;
+    margin: 0;
     padding: 12px 22px;
     min-height: 44px;
+    font-size: 15px;
   }
 
   .hero-inner {

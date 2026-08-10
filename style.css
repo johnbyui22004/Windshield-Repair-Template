@@ -311,10 +311,15 @@ textarea:focus-visible {
 }
 
 .header-call {
-  margin: 0;
-  padding: 10px 16px;
-  min-height: 42px;
-  font-size: 14px;
+  display: none;
+}
+
+.nav-call-wrapper {
+  padding: 12px 20px 20px;
+}
+
+.nav-call {
+  width: 100%;
 }
 
 /* -------------------------------------------------------------
@@ -803,19 +808,7 @@ body {
   color: #8E9BB8;
 }
 
-/* =================================================================
-   MOBILE NARROW (≤ 480px)
-   ================================================================= */
-@media (max-width: 480px) {
-  .logo-text small {
-    display: none;
-  }
-  .header-call {
-    padding: 8px 12px;
-    font-size: 13px;
-    min-height: 38px;
-  }
-}
+
 
 /* =================================================================
    TABLET & UP  (≥ 640px)
@@ -889,10 +882,15 @@ body {
   }
 
   .header-call {
+    display: inline-flex;
     margin: 0;
     padding: 12px 22px;
     min-height: 44px;
     font-size: 15px;
+  }
+
+  .nav-call-wrapper {
+    display: none;
   }
 
   .hero-inner {

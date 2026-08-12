@@ -1341,13 +1341,16 @@ textarea:focus-visible {
     background: transparent;
     border-bottom: none;
     box-shadow: none;
-    margin-left: auto;
+    flex: 1;
+    margin: 0 40px;
   }
 
   .primary-nav ul {
     flex-direction: row;
     align-items: center;
-    gap: 28px;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0;
     padding: 0;
   }
 

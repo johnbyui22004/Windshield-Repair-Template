@@ -1,128 +1,160 @@
-/* =============================================================
-   PRECISION AUTO GLASS — APPLICATION SCRIPT
-   Vanilla JavaScript, responsive, fast, dependency-free.
-   ============================================================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-document.addEventListener('DOMContentLoaded', function () {
+  /* ==========================================================
+     MOBILE NAVIGATION
+     ========================================================== */
 
-  /* -----------------------------------------------------------
-     MOBILE NAV TOGGLE
-     ----------------------------------------------------------- */
-  var navToggle = document.getElementById('navToggle');
-  var primaryNav = document.getElementById('primaryNav');
+  const navToggle = document.getElementById("navToggle");
+  const primaryNav = document.getElementById("primaryNav");
 
   if (navToggle && primaryNav) {
-    navToggle.addEventListener('click', function () {
-      var isOpen = primaryNav.classList.toggle('is-open');
-      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    const closeMenu = () => {
+      primaryNav.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "Open menu");
+    };
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = primaryNav.classList.toggle("is-open");
+
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+      navToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close menu" : "Open menu"
+      );
     });
 
-    var navLinks = primaryNav.querySelectorAll('a');
-    navLinks.forEach(function (link) {
-      link.addEventListener('click', function () {
-        primaryNav.classList.remove('is-open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        navToggle.setAttribute('aria-label', 'Open menu');
-      });
+    primaryNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
     });
   }
 
-  /* -----------------------------------------------------------
+
+  /* ==========================================================
      FAQ ACCORDION
-     ----------------------------------------------------------- */
-  var accordionTriggers = document.querySelectorAll('.accordion-trigger');
+     ========================================================== */
 
-  accordionTriggers.forEach(function (trigger) {
-    trigger.addEventListener('click', function () {
-      var panel = trigger.nextElementSibling;
-      var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+  document.querySelectorAll(".accordion-trigger").forEach((trigger) => {
 
-      // Close other open panels for single accordion experience
-      accordionTriggers.forEach(function (otherTrigger) {
-        if (otherTrigger !== trigger) {
-          otherTrigger.setAttribute('aria-expanded', 'false');
-          if (otherTrigger.nextElementSibling) {
-            otherTrigger.nextElementSibling.style.maxHeight = null;
-          }
+    trigger.addEventListener("click", () => {
+      const panel = trigger.nextElementSibling;
+      const isOpen =
+        trigger.getAttribute("aria-expanded") === "true";
+
+      // Close all other FAQ panels.
+      document.querySelectorAll(".accordion-trigger").forEach((other) => {
+        other.setAttribute("aria-expanded", "false");
+
+        const otherPanel = other.nextElementSibling;
+
+        if (otherPanel) {
+          otherPanel.style.maxHeight = null;
         }
       });
 
-      if (isOpen) {
-        trigger.setAttribute('aria-expanded', 'false');
-        panel.style.maxHeight = null;
-      } else {
-        trigger.setAttribute('aria-expanded', 'true');
-        panel.style.maxHeight = panel.scrollHeight + 'px';
+      // Open the selected panel if it was previously closed.
+      if (!isOpen && panel) {
+        trigger.setAttribute("aria-expanded", "true");
+        panel.style.maxHeight = `${panel.scrollHeight}px`;
       }
     });
+
   });
 
-  /* -----------------------------------------------------------
-     QUOTE FORM SUBMISSION & NETLIFY HANDLER
-     ----------------------------------------------------------- */
-  var quoteForm = document.getElementById('quoteForm');
-  var formNote = document.getElementById('formNote');
+
+  /* ==========================================================
+     QUOTE FORM
+     ========================================================== */
+
+  const quoteForm = document.getElementById("quoteForm");
+  const formNote = document.getElementById("formNote");
 
   if (quoteForm) {
-    quoteForm.addEventListener('submit', function (e) {
-      var nameInput = document.getElementById('fullName');
-      var phoneInput = document.getElementById('phone');
 
-      if (!nameInput || !nameInput.value.trim() || !phoneInput || !phoneInput.value.trim()) {
-        e.preventDefault();
+    quoteForm.addEventListener("submit", (event) => {
+
+      const nameInput = document.getElementById("fullName");
+      const phoneInput = document.getElementById("phone");
+
+      const name = nameInput?.value.trim();
+      const phone = phoneInput?.value.trim();
+
+      // Name and phone number are required.
+      if (!name || !phone) {
+        event.preventDefault();
+
         if (formNote) {
-          formNote.textContent = 'Please fill out your Name and Phone Number so we can reach you.';
-          formNote.style.color = '#e20684';
+          formNote.textContent =
+            "Please fill out your Name and Phone Number so we can reach you.";
+
+          formNote.style.color = "#e20684";
         }
+
         return;
       }
 
-      // If submitted via Netlify or AJAX:
-      if (quoteForm.hasAttribute('data-netlify')) {
-        // Let standard Netlify form submission process or handle via fetch if preferred
-      } else {
-        e.preventDefault();
-        if (formNote) {
-          formNote.style.color = '#333333';
-          formNote.textContent = "Thank you! We've received your repair quote request. We will call or text you shortly at " + phoneInput.value.trim() + ".";
-        }
-        quoteForm.reset();
+      // Allow Netlify to handle forms marked with data-netlify.
+      if (quoteForm.hasAttribute("data-netlify")) {
+        return;
       }
+
+      // Demo/local form behavior.
+      event.preventDefault();
+
+      if (formNote) {
+        formNote.textContent =
+          `Thank you! We've received your repair quote request. ` +
+          `We will call or text you shortly at ${phone}.`;
+
+        formNote.style.color = "#333333";
+      }
+
+      quoteForm.reset();
     });
+
   }
 
-  /* -----------------------------------------------------------
+
+  /* ==========================================================
      FOOTER COPYRIGHT YEAR
-     ----------------------------------------------------------- */
-  var yearEl = document.getElementById('year');
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
+     ========================================================== */
+
+  const year = document.getElementById("year");
+
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
+
+
+  /* ==========================================================
+     BEFORE & AFTER SLIDER
+     ========================================================== */
+
+  const slider = document.getElementById("beforeAfterSlider");
+
+  if (slider) {
+
+    const input = slider.querySelector(".slider-input");
+    const beforeWrapper =
+      slider.querySelector(".before-image-wrapper");
+    const line =
+      slider.querySelector(".slider-line");
+
+    // Make sure all required slider elements exist.
+    if (input && beforeWrapper && line) {
+
+      const updateSlider = (value) => {
+        beforeWrapper.style.width = `${value}%`;
+        line.style.left = `${value}%`;
+      };
+
+      input.addEventListener("input", () => {
+        updateSlider(input.value);
+      });
+
+      // Set the slider to its starting position.
+      updateSlider(input.value);
+    }
   }
 
 });
-
-
-
-/* -------------------------------------------------------------
-   BEFORE & AFTER SLIDER
-   ------------------------------------------------------------- */
-
-const beforeAfterSlider = document.getElementById('beforeAfterSlider');
-
-if (beforeAfterSlider) {
-  const sliderInput = beforeAfterSlider.querySelector('.slider-input');
-  const beforeWrapper = beforeAfterSlider.querySelector('.before-image-wrapper');
-  const sliderLine = beforeAfterSlider.querySelector('.slider-line');
-
-  function updateSlider(value) {
-    beforeWrapper.style.width = `${value}%`;
-    sliderLine.style.left = `${value}%`;
-  }
-
-  sliderInput.addEventListener('input', function () {
-    updateSlider(this.value);
-  });
-
-  updateSlider(sliderInput.value);
-}

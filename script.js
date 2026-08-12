@@ -1,16 +1,12 @@
 /* =============================================================
-   STERLING AUTO GLASS — TEMPLATE SCRIPT
-   Vanilla JavaScript, no dependencies.
-   Handles: mobile nav toggle, FAQ accordion, quote form submission,
-   and the dynamic copyright year in the footer.
+   PRECISION AUTO GLASS — APPLICATION SCRIPT
+   Vanilla JavaScript, responsive, fast, dependency-free.
    ============================================================= */
 
 document.addEventListener('DOMContentLoaded', function () {
 
   /* -----------------------------------------------------------
      MOBILE NAV TOGGLE
-     Opens/closes the primary navigation on small screens and
-     closes it automatically after a link is tapped.
      ----------------------------------------------------------- */
   var navToggle = document.getElementById('navToggle');
   var primaryNav = document.getElementById('primaryNav');
@@ -34,8 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* -----------------------------------------------------------
      FAQ ACCORDION
-     Only one panel open at a time. Height is set dynamically via
-     scrollHeight so the CSS transition animates smoothly.
      ----------------------------------------------------------- */
   var accordionTriggers = document.querySelectorAll('.accordion-trigger');
 
@@ -44,11 +38,13 @@ document.addEventListener('DOMContentLoaded', function () {
       var panel = trigger.nextElementSibling;
       var isOpen = trigger.getAttribute('aria-expanded') === 'true';
 
-      // Close every other open panel first
+      // Close other open panels for single accordion experience
       accordionTriggers.forEach(function (otherTrigger) {
         if (otherTrigger !== trigger) {
           otherTrigger.setAttribute('aria-expanded', 'false');
-          otherTrigger.nextElementSibling.style.maxHeight = null;
+          if (otherTrigger.nextElementSibling) {
+            otherTrigger.nextElementSibling.style.maxHeight = null;
+          }
         }
       });
 
@@ -63,42 +59,41 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* -----------------------------------------------------------
-     QUOTE FORM SUBMISSION
-     This demo intercepts submission and shows a confirmation
-     message in place. Replace the section marked below with a
-     real fetch() call to your form backend, email service, or
-     CRM endpoint when deploying for a live business.
+     QUOTE FORM SUBMISSION & NETLIFY HANDLER
      ----------------------------------------------------------- */
   var quoteForm = document.getElementById('quoteForm');
   var formNote = document.getElementById('formNote');
 
   if (quoteForm) {
     quoteForm.addEventListener('submit', function (e) {
-      e.preventDefault();
+      var nameInput = document.getElementById('fullName');
+      var phoneInput = document.getElementById('phone');
 
-      if (!quoteForm.checkValidity()) {
-        formNote.textContent = 'Please fill in your name and phone number so we can reach you.';
-        formNote.style.color = '#B4342A';
+      if (!nameInput || !nameInput.value.trim() || !phoneInput || !phoneInput.value.trim()) {
+        e.preventDefault();
+        if (formNote) {
+          formNote.textContent = 'Please fill out your Name and Phone Number so we can reach you.';
+          formNote.style.color = '#e20684';
+        }
         return;
       }
 
-      // ---- Replace this block with a real submission call ----
-      // Example:
-      // fetch('/api/quote-requests', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(Object.fromEntries(new FormData(quoteForm)))
-      // });
-      // ----------------------------------------------------------
-
-      formNote.style.color = '#16233F';
-      formNote.textContent = "Thanks! We've received your request and will call you back shortly.";
-      quoteForm.reset();
+      // If submitted via Netlify or AJAX:
+      if (quoteForm.hasAttribute('data-netlify')) {
+        // Let standard Netlify form submission process or handle via fetch if preferred
+      } else {
+        e.preventDefault();
+        if (formNote) {
+          formNote.style.color = '#333333';
+          formNote.textContent = "Thank you! We've received your repair quote request. We will call or text you shortly at " + phoneInput.value.trim() + ".";
+        }
+        quoteForm.reset();
+      }
     });
   }
 
   /* -----------------------------------------------------------
-     FOOTER YEAR
+     FOOTER COPYRIGHT YEAR
      ----------------------------------------------------------- */
   var yearEl = document.getElementById('year');
   if (yearEl) {

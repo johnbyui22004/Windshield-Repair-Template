@@ -101,3 +101,28 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 });
+
+
+
+/* -------------------------------------------------------------
+   BEFORE & AFTER SLIDER
+   ------------------------------------------------------------- */
+
+const beforeAfterSlider = document.getElementById('beforeAfterSlider');
+
+if (beforeAfterSlider) {
+  const sliderInput = beforeAfterSlider.querySelector('.slider-input');
+  const beforeWrapper = beforeAfterSlider.querySelector('.before-image-wrapper');
+  const sliderLine = beforeAfterSlider.querySelector('.slider-line');
+
+  function updateSlider(value) {
+    beforeWrapper.style.width = `${value}%`;
+    sliderLine.style.left = `${value}%`;
+  }
+
+  sliderInput.addEventListener('input', function () {
+    updateSlider(this.value);
+  });
+
+  updateSlider(sliderInput.value);
+}

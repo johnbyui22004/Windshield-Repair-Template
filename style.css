@@ -1317,7 +1317,7 @@ textarea:focus-visible {
   }
 
   .steps-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
   }
 
   .pricing-grid {
@@ -1424,35 +1424,56 @@ textarea:focus-visible {
   }
 }
 
+
 /* -------------------------------------------------------------
-   BEFORE & AFTER SLIDER
+   HOW IT WORKS — STEPS + BEFORE/AFTER SLIDER
    ------------------------------------------------------------- */
 
-.before-after-section {
-  margin-top: 56px;
+.how-it-works-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-top: 48px;
+  align-items: center;
+}
+
+.how-it-works-content .steps-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.how-it-works-content .step-card {
+  padding: 16px 20px;
+}
+
+.how-it-works-content .before-after-section {
+  width: 100%;
+  margin: 0;
   text-align: center;
 }
 
-.before-after-header {
-  margin-bottom: 24px;
+.how-it-works-content .before-after-header {
+  margin-bottom: 18px;
 }
 
-.before-after-header h3 {
+.how-it-works-content .before-after-header h3 {
   color: var(--white);
-  font-size: 28px;
-  margin-bottom: 8px;
+  font-size: 24px;
+  margin-bottom: 6px;
 }
 
-.before-after-header p {
+.how-it-works-content .before-after-header p {
   color: var(--gray-silver);
+  font-size: 14px;
   margin: 0;
 }
 
-.before-after-slider {
+.how-it-works-content .before-after-slider {
   position: relative;
   width: 100%;
-  max-width: 850px;
-  height: 480px;
+  max-width: 600px;
+  height: 360px;
   margin: 0 auto;
   overflow: hidden;
   border-radius: var(--radius-lg);
@@ -1463,8 +1484,8 @@ textarea:focus-visible {
   background: var(--dark-charcoal-card);
 }
 
-.before-after-slider > .after-image,
-.before-image {
+.how-it-works-content .before-after-slider > .after-image,
+.how-it-works-content .before-image {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1472,7 +1493,7 @@ textarea:focus-visible {
   object-fit: cover;
 }
 
-.before-image-wrapper {
+.how-it-works-content .before-image-wrapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -1482,12 +1503,12 @@ textarea:focus-visible {
   z-index: 2;
 }
 
-.before-image-wrapper .before-image {
-  width: 850px;
+.how-it-works-content .before-image-wrapper .before-image {
+  width: 600px;
   max-width: none;
 }
 
-.slider-line {
+.how-it-works-content .slider-line {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -1500,7 +1521,7 @@ textarea:focus-visible {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
-.slider-button {
+.how-it-works-content .slider-button {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1519,7 +1540,7 @@ textarea:focus-visible {
   box-shadow: var(--shadow-pink);
 }
 
-.slider-label {
+.how-it-works-content .slider-label {
   position: absolute;
   top: 20px;
   padding: 7px 14px;
@@ -1531,17 +1552,18 @@ textarea:focus-visible {
   letter-spacing: 0.08em;
   z-index: 5;
   pointer-events: none;
+  white-space: nowrap;
 }
 
-.before-label {
+.how-it-works-content .before-label {
   left: 20px;
 }
 
-.after-label {
+.how-it-works-content .after-label {
   right: 20px;
 }
 
-.slider-input {
+.how-it-works-content .slider-input {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1552,27 +1574,46 @@ textarea:focus-visible {
   z-index: 10;
 }
 
-@media (max-width: 767px) {
-  .before-after-slider {
-    height: 350px;
+@media (min-width: 960px) {
+  .how-it-works-content {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 50px;
+  }
+}
+
+@media (max-width: 959px) {
+  .how-it-works-content .before-after-slider {
+    max-width: 700px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 600px) {
+  .how-it-works-content {
+    gap: 30px;
+    margin-top: 35px;
   }
 
-  .slider-button {
+  .how-it-works-content .before-after-slider {
+    height: 300px;
+  }
+
+  .how-it-works-content .slider-button {
     width: 46px;
     height: 46px;
     font-size: 24px;
   }
 
-  .slider-label {
+  .how-it-works-content .slider-label {
     top: 12px;
     font-size: 11px;
   }
 
-  .before-label {
+  .how-it-works-content .before-label {
     left: 12px;
   }
 
-  .after-label {
+  .how-it-works-content .after-label {
     right: 12px;
   }
 }

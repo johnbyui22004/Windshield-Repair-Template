@@ -962,8 +962,9 @@ textarea:focus-visible {
 }
 
 /* -------------------------------------------------------------
-   REVIEWS SECTION
-   ------------------------------------------------------------- */
+REVIEWS SECTION
+------------------------------------------------------------- */
+
 .reviews {
   background: var(--white);
 }
@@ -990,16 +991,153 @@ textarea:focus-visible {
   letter-spacing: 2px;
 }
 
-.review-placeholder-note {
-  text-align: center;
+/* Review Cards */
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 10px;
+}
+
+.review-card {
+  background: var(--white);
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(226, 6, 132, 0.25);
+}
+
+/* Reviewer Info */
+
+.review-card-top {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.review-avatar {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  border-radius: 50%;
+  background: var(--primary-pink-light);
+  color: var(--primary-pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.review-author {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.review-author strong {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  color: var(--dark-charcoal);
+}
+
+.review-author span {
+  font-size: 12px;
   color: var(--gray-text);
-  font-size: 14.5px;
-  max-width: 600px;
-  margin: 32px auto 0;
-  padding: 16px;
-  background: var(--gray-bg);
-  border-radius: var(--radius-md);
-  border: 1px dashed var(--gray-silver);
+}
+
+/* Stars */
+
+.review-stars {
+  margin-top: 18px;
+  color: #f59e0b;
+  font-size: 18px;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+/* Review Date */
+
+.review-date {
+  display: block;
+  margin-top: 7px;
+  font-size: 12px;
+  color: var(--gray-silver);
+}
+
+/* Review Text */
+
+.review-text {
+  color: var(--gray-text);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 18px 0 0;
+}
+
+/* Google Label */
+
+.review-source {
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: 12px;
+  color: var(--gray-text);
+  font-weight: 700;
+}
+
+/* Bottom CTA */
+
+.reviews-cta {
+  text-align: center;
+  margin-top: 32px;
+  color: var(--gray-text);
+  font-size: 15px;
+}
+
+.reviews-cta p {
+  margin: 0;
+}
+
+.reviews-cta strong {
+  color: var(--dark-charcoal);
+}
+
+
+/* -------------------------------------------------------------
+REVIEWS — TABLET & MOBILE
+------------------------------------------------------------- */
+
+@media (max-width: 959px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .reviews-grid {
+    gap: 18px;
+  }
+
+  .review-card {
+    padding: 22px;
+  }
+
+  .review-text {
+    font-size: 14.5px;
+  }
 }
 
 /* -------------------------------------------------------------

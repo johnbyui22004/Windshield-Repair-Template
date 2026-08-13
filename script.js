@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      // Open the selected panel if it was previously closed.
+      // Open the selected FAQ panel.
       if (!isOpen && panel) {
         trigger.setAttribute("aria-expanded", "true");
         panel.style.maxHeight = `${panel.scrollHeight}px`;
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ==========================================================
-     QUOTE FORM
+     QUOTE FORM — NETLIFY FORMS
      ========================================================== */
 
   const quoteForm = document.getElementById("quoteForm");
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const name = nameInput?.value.trim();
       const phone = phoneInput?.value.trim();
 
-      // Name and phone number are required.
+      // Make sure required contact information is present.
       if (!name || !phone) {
         event.preventDefault();
 
@@ -93,23 +93,21 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Allow Netlify to handle forms marked with data-netlify.
-      if (quoteForm.hasAttribute("data-netlify")) {
-        return;
-      }
+      /*
+       * IMPORTANT:
+       *
+       * Do NOT call event.preventDefault() here.
+       *
+       * The HTML form contains:
+       *
+       *   data-netlify="true"
+       *   method="POST"
+       *   name="quote-request"
+       *
+       * Therefore, once validation passes, the browser
+       * submits the form normally and Netlify receives it.
+       */
 
-      // Demo/local form behavior.
-      event.preventDefault();
-
-      if (formNote) {
-        formNote.textContent =
-          `Thank you! We've received your repair quote request. ` +
-          `We will call or text you shortly at ${phone}.`;
-
-        formNote.style.color = "#333333";
-      }
-
-      quoteForm.reset();
     });
 
   }

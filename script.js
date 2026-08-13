@@ -63,29 +63,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ==========================================================
-     QUOTE FORM — NETLIFY FORMS
+     QUESTION FORM — NETLIFY FORMS
      ========================================================== */
 
-  const quoteForm = document.getElementById("quoteForm");
+  const questionForm = document.getElementById("quoteForm");
   const formNote = document.getElementById("formNote");
 
-  if (quoteForm) {
+  if (questionForm) {
 
-    quoteForm.addEventListener("submit", (event) => {
+    questionForm.addEventListener("submit", (event) => {
 
       const nameInput = document.getElementById("fullName");
-      const phoneInput = document.getElementById("phone");
+      const messageInput = document.getElementById("message");
 
       const name = nameInput?.value.trim();
-      const phone = phoneInput?.value.trim();
+      const message = messageInput?.value.trim();
 
-      // Make sure required contact information is present.
-      if (!name || !phone) {
+      // Make sure required information is present.
+      if (!name || !message) {
         event.preventDefault();
 
         if (formNote) {
           formNote.textContent =
-            "Please fill out your Name and Phone Number so we can reach you.";
+            "Please enter your name and your question.";
 
           formNote.style.color = "#e20684";
         }
@@ -98,11 +98,11 @@ document.addEventListener("DOMContentLoaded", () => {
        *
        * Do NOT call event.preventDefault() here.
        *
-       * The HTML form contains:
+       * The HTML form uses:
        *
        *   data-netlify="true"
        *   method="POST"
-       *   name="quote-request"
+       *   name="question-request"
        *
        * Therefore, once validation passes, the browser
        * submits the form normally and Netlify receives it.

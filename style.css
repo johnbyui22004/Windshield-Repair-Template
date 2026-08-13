@@ -37,7 +37,10 @@
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ---------- Base ---------- */
+
+/* ==========================================================
+   BASE
+   ========================================================== */
 
 * {
   box-sizing: border-box;
@@ -124,6 +127,11 @@ textarea:focus-visible {
   }
 }
 
+
+/* ==========================================================
+   GENERAL LAYOUT
+   ========================================================== */
+
 .container {
   width: min(100% - 40px, var(--max-width));
   margin-inline: auto;
@@ -164,7 +172,10 @@ textarea:focus-visible {
   text-align: center;
 }
 
-/* ---------- Buttons ---------- */
+
+/* ==========================================================
+   BUTTONS
+   ========================================================== */
 
 .btn {
   display: inline-flex;
@@ -225,7 +236,10 @@ textarea:focus-visible {
   width: 100%;
 }
 
-/* ---------- Header / Navigation ---------- */
+
+/* ==========================================================
+   HEADER / NAVIGATION
+   ========================================================== */
 
 .site-header {
   position: sticky;
@@ -323,7 +337,10 @@ textarea:focus-visible {
   color: var(--pink);
 }
 
-/* ---------- Hero ---------- */
+
+/* ==========================================================
+   HERO
+   ========================================================== */
 
 .hero {
   position: relative;
@@ -340,7 +357,11 @@ textarea:focus-visible {
   right: -100px;
   width: 450px;
   height: 450px;
-  background: radial-gradient(circle, var(--pink-glow), transparent 70%);
+  background: radial-gradient(
+    circle,
+    var(--pink-glow),
+    transparent 70%
+  );
   pointer-events: none;
 }
 
@@ -449,7 +470,83 @@ textarea:focus-visible {
   font-size: 12px;
 }
 
-/* ---------- Services ---------- */
+
+/* ==========================================================
+   KIOSK LOCATIONS
+   ========================================================== */
+
+.kiosk-locations {
+  background: var(--gray-bg);
+}
+
+.locations-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.location-card {
+  display: flex;
+  flex-direction: column;
+  padding: 26px 22px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.location-card:hover {
+  border-color: rgba(226, 6, 132, 0.3);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.location-card-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+  place-items: center;
+  color: var(--pink);
+  background: var(--pink-soft);
+  border-radius: var(--radius-md);
+}
+
+.location-card-icon svg {
+  width: 25px;
+  height: 25px;
+  fill: currentColor;
+}
+
+.location-card h3 {
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+.location-card p {
+  margin-bottom: 18px;
+  color: var(--gray);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.location-map-link {
+  margin-top: auto;
+  color: var(--pink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.location-map-link:hover {
+  color: var(--pink-dark);
+  text-decoration: underline;
+}
+
+
+/* ==========================================================
+   SERVICES
+   ========================================================== */
 
 .services {
   background: var(--white);
@@ -531,7 +628,10 @@ textarea:focus-visible {
   font-size: 14px;
 }
 
-/* ---------- How It Works ---------- */
+
+/* ==========================================================
+   HOW IT WORKS
+   ========================================================== */
 
 .how-it-works {
   color: var(--white);
@@ -589,6 +689,11 @@ textarea:focus-visible {
   color: var(--silver);
   font-size: 14px;
 }
+
+
+/* ==========================================================
+   BEFORE & AFTER SLIDER
+   ========================================================== */
 
 .before-after-section {
   width: 100%;
@@ -715,7 +820,10 @@ textarea:focus-visible {
   cursor: ew-resize;
 }
 
-/* ---------- About ---------- */
+
+/* ==========================================================
+   ABOUT
+   ========================================================== */
 
 .about {
   background: var(--gray-bg);
@@ -772,7 +880,10 @@ textarea:focus-visible {
   font-size: 12px;
 }
 
-/* ---------- Reviews ---------- */
+
+/* ==========================================================
+   REVIEWS
+   ========================================================== */
 
 .reviews {
   background: var(--white);
@@ -884,7 +995,10 @@ textarea:focus-visible {
   color: var(--charcoal);
 }
 
-/* ---------- FAQ ---------- */
+
+/* ==========================================================
+   FAQ
+   ========================================================== */
 
 .faq {
   background: var(--gray-bg);
@@ -951,7 +1065,10 @@ textarea:focus-visible {
   font-size: 14.5px;
 }
 
-/* ---------- Contact / Quote Form ---------- */
+
+/* ==========================================================
+   CONTACT / QUESTION FORM
+   ========================================================== */
 
 .contact {
   background: var(--white);
@@ -1086,7 +1203,10 @@ textarea:focus-visible {
   font-weight: 600;
 }
 
-/* ---------- Mobile Call / Text Bar ---------- */
+
+/* ==========================================================
+   MOBILE CALL / TEXT BAR
+   ========================================================== */
 
 .mobile-call-bar {
   position: fixed;
@@ -1109,7 +1229,10 @@ textarea:focus-visible {
   font-size: 14px;
 }
 
-/* ---------- Footer ---------- */
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
 
 .site-footer {
   color: var(--silver);
@@ -1170,13 +1293,30 @@ textarea:focus-visible {
   font-size: 12.5px;
 }
 
+
 /* ==========================================================
    RESPONSIVE LAYOUT
    ========================================================== */
 
-@media (min-width: 640px) {
+
+/* ---------- Small tablets ---------- */
+
+@media (min-width: 640px) and (max-width: 767px) {
+
+  /*
+   * Keep the hero Call/Text actions stacked.
+   * This prevents the mobile layout from becoming
+   * wider than the viewport.
+   */
+
   .hero-ctas {
-    flex-direction: row;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+    max-width: 100%;
   }
 
   .card-grid {
@@ -1196,7 +1336,11 @@ textarea:focus-visible {
   }
 }
 
+
+/* ---------- Desktop/tablet ---------- */
+
 @media (min-width: 768px) {
+
   .section {
     padding: 78px 0;
   }
@@ -1212,9 +1356,17 @@ textarea:focus-visible {
   .before-after-slider {
     height: 400px;
   }
+
+  .locations-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
+
+/* ---------- Large desktop ---------- */
+
 @media (min-width: 960px) {
+
   body {
     padding-bottom: 0;
   }
@@ -1253,13 +1405,78 @@ textarea:focus-visible {
     font-size: 15px;
   }
 
+
+  /* ----------------------------------------------------------
+     DESKTOP HEADER CALL / TEXT
+     
+     On laptops/desktops these are plain text because
+     clicking Call/Text isn't useful on a computer.
+     ---------------------------------------------------------- */
+
   .header-call-btn,
   .header-text-btn {
-    display: inline-flex;
-    min-height: 42px;
-    padding: 10px 16px;
+    display: inline;
+    min-height: auto;
+    padding: 0;
+    color: var(--gray);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
     font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
   }
+
+  .header-call-btn .icon,
+  .header-text-btn .icon {
+    display: none;
+  }
+
+  .header-call-btn:hover,
+  .header-text-btn:hover {
+    color: var(--charcoal);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    transform: none;
+  }
+
+
+  /* ----------------------------------------------------------
+     DESKTOP HERO CALL / TEXT
+     
+     These remain informational text instead of
+     looking like clickable phone/SMS buttons.
+     ---------------------------------------------------------- */
+
+  .hero-ctas {
+    flex-direction: row;
+  }
+
+  .hero-ctas .btn {
+    min-height: auto;
+    padding: 0;
+    color: var(--silver);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    font-size: 15px;
+    font-weight: 600;
+    transform: none;
+  }
+
+  .hero-ctas .btn .icon {
+    display: none;
+  }
+
+  .hero-ctas .btn:hover {
+    color: var(--white);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    transform: none;
+  }
+
 
   .hero {
     padding: 72px 0;
@@ -1315,9 +1532,18 @@ textarea:focus-visible {
   }
 }
 
-/* ---------- Compact mobile version ---------- */
-/* The user requested these entire sections to disappear on phones. */
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
 @media (max-width: 767px) {
+
+  /*
+   * These sections remain hidden on phones as in the
+   * existing mobile design.
+   */
+
   #services,
   #how-it-works,
   #faq {
@@ -1345,6 +1571,9 @@ textarea:focus-visible {
     font-size: 15px;
   }
 
+
+  /* ---------- Hero ---------- */
+
   .hero {
     padding: 34px 0 52px;
   }
@@ -1361,8 +1590,21 @@ textarea:focus-visible {
     font-size: 16px;
   }
 
+  /*
+   * Keep Call/Text buttons stacked on mobile.
+   * This is the important fix for the white strip.
+   */
+
+  .hero-ctas {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
   .hero-ctas .btn {
     width: 100%;
+    max-width: 100%;
   }
 
   .hero-badges {
@@ -1374,13 +1616,20 @@ textarea:focus-visible {
     font-size: 13px;
   }
 
+  .hero-media {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .hero-media img {
+    width: 100%;
     border-radius: 14px;
   }
 
   .hero-floating-badge {
     left: 10px;
     bottom: -15px;
+    max-width: calc(100% - 20px);
     padding: 9px 12px;
   }
 
@@ -1396,6 +1645,28 @@ textarea:focus-visible {
   .floating-text span {
     font-size: 10px;
   }
+
+
+  /* ---------- Kiosk Locations ---------- */
+
+  .locations-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .location-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .location-card h3,
+  .location-card p,
+  .location-map-link {
+    overflow-wrap: break-word;
+  }
+
+
+  /* ---------- About ---------- */
 
   .about-inner,
   .contact-inner {
@@ -1427,6 +1698,9 @@ textarea:focus-visible {
     font-size: 11px;
   }
 
+
+  /* ---------- Reviews ---------- */
+
   .reviews-grid {
     gap: 14px;
   }
@@ -1434,6 +1708,9 @@ textarea:focus-visible {
   .review-card {
     padding: 19px;
   }
+
+
+  /* ---------- Contact ---------- */
 
   .contact-cta-buttons {
     display: grid;
@@ -1447,15 +1724,25 @@ textarea:focus-visible {
   }
 
   .quote-form {
+    width: 100%;
+    max-width: 100%;
     padding: 22px 18px;
   }
+
+
+  /* ---------- Footer ---------- */
 
   .footer-inner {
     gap: 24px;
     padding: 42px 14px 28px;
   }
 }
-/* footer privacy and terms  */
+
+
+/* ==========================================================
+   FOOTER PRIVACY AND TERMS
+   ========================================================== */
+
 .footer-legal-links {
   display: flex;
   justify-content: center;

@@ -31,6 +31,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ==========================================================
+     PHONE & TEXT LINKS
+     MOBILE = WORKS
+     DESKTOP/TABLET = DOES NOTHING
+     ========================================================== */
+
+  const isMobileDevice = () => {
+    return window.matchMedia("(max-width: 767px)").matches;
+  };
+
+  // Phone links
+  document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
+
+    link.addEventListener("click", (event) => {
+
+      // On desktop/tablet, prevent the phone link from doing anything.
+      if (!isMobileDevice()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      // On mobile, do NOTHING.
+      // The original tel: link works normally.
+    });
+
+  });
+
+  // SMS/Text links
+  document.querySelectorAll('a[href^="sms:"]').forEach((link) => {
+
+    link.addEventListener("click", (event) => {
+
+      // On desktop/tablet, prevent the SMS link from doing anything.
+      if (!isMobileDevice()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      // On mobile, do NOTHING.
+      // The original sms: link works normally.
+    });
+
+  });
+
+
+  /* ==========================================================
      FAQ ACCORDION
      ========================================================== */
 

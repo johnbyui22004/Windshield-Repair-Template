@@ -1408,13 +1408,51 @@ textarea:focus-visible {
 
   /* ----------------------------------------------------------
      DESKTOP HEADER CALL / TEXT
-     
-     On laptops/desktops these are plain text because
-     clicking Call/Text isn't useful on a computer.
+
+     The phone number stays visible but is not a
+     clickable phone button on desktop.
+
+     Pink + slightly larger text.
      ---------------------------------------------------------- */
 
-  .header-call-btn,
-  .header-text-btn {
+  .header-actions .header-call-btn,
+  .header-actions a.header-call-btn.btn,
+  .header-actions a.header-call-btn.btn-call {
+    display: inline !important;
+    min-height: auto !important;
+    width: auto !important;
+    padding: 0 !important;
+
+    color: var(--pink) !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+
+    white-space: nowrap;
+    text-decoration: none !important;
+    transform: none !important;
+  }
+
+  .header-actions .header-call-btn:hover,
+  .header-actions a.header-call-btn.btn:hover,
+  .header-actions a.header-call-btn.btn-call:hover {
+    color: var(--pink-dark) !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  .header-actions .header-call-btn .icon,
+  .header-actions a.header-call-btn .icon {
+    display: none !important;
+  }
+
+  .header-actions .header-text-btn {
     display: inline;
     min-height: auto;
     padding: 0;
@@ -1427,13 +1465,11 @@ textarea:focus-visible {
     white-space: nowrap;
   }
 
-  .header-call-btn .icon,
-  .header-text-btn .icon {
+  .header-actions .header-text-btn .icon {
     display: none;
   }
 
-  .header-call-btn:hover,
-  .header-text-btn:hover {
+  .header-actions .header-text-btn:hover {
     color: var(--charcoal);
     background: transparent;
     border: 0;
@@ -1444,7 +1480,7 @@ textarea:focus-visible {
 
   /* ----------------------------------------------------------
      DESKTOP HERO CALL / TEXT
-     
+
      These remain informational text instead of
      looking like clickable phone/SMS buttons.
      ---------------------------------------------------------- */
@@ -1766,4 +1802,38 @@ textarea:focus-visible {
 
 .footer-legal-links span {
   opacity: 0.5;
+}
+
+
+/* ==========================================================
+   HERO — CALL OR TEXT PHONE NUMBER
+   Desktop: Pink text only
+   Mobile: Existing pink button remains
+   ========================================================== */
+
+@media (min-width: 768px) {
+
+  .hero-ctas a[href^="tel:"] {
+    display: inline !important;
+    width: auto !important;
+    min-height: auto !important;
+
+    padding: 0 !important;
+
+    color: var(--pink) !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+
+    text-decoration: none !important;
+    transform: none !important;
+  }
+
+
+  
 }

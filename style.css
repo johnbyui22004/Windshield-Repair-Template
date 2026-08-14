@@ -1303,12 +1303,6 @@ textarea:focus-visible {
 
 @media (min-width: 640px) and (max-width: 767px) {
 
-  /*
-   * Keep the hero Call/Text actions stacked.
-   * This prevents the mobile layout from becoming
-   * wider than the viewport.
-   */
-
   .hero-ctas {
     flex-direction: column;
     width: 100%;
@@ -1409,10 +1403,8 @@ textarea:focus-visible {
   /* ----------------------------------------------------------
      DESKTOP HEADER CALL / TEXT
 
-     The phone number stays visible but is not a
-     clickable phone button on desktop.
-
-     Pink + slightly larger text.
+     Phone number = pink text only.
+     Normal arrow cursor.
      ---------------------------------------------------------- */
 
   .header-actions .header-call-btn,
@@ -1426,6 +1418,7 @@ textarea:focus-visible {
     color: var(--pink) !important;
     background: transparent !important;
     border: 0 !important;
+    border-radius: 0 !important;
     box-shadow: none !important;
 
     font-size: 17px !important;
@@ -1435,17 +1428,11 @@ textarea:focus-visible {
     white-space: nowrap;
     text-decoration: none !important;
     transform: none !important;
+
+    cursor: default !important;
   }
 
-  .header-actions .header-call-btn:hover,
-  .header-actions a.header-call-btn.btn:hover,
-  .header-actions a.header-call-btn.btn-call:hover {
-    color: var(--pink-dark) !important;
-    background: transparent !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    transform: none !important;
-  }
+
 
   .header-actions .header-call-btn .icon,
   .header-actions a.header-call-btn .icon {
@@ -1480,37 +1467,80 @@ textarea:focus-visible {
 
   /* ----------------------------------------------------------
      DESKTOP HERO CALL / TEXT
-
-     These remain informational text instead of
-     looking like clickable phone/SMS buttons.
      ---------------------------------------------------------- */
 
   .hero-ctas {
     flex-direction: row;
   }
 
-  .hero-ctas .btn {
-    min-height: auto;
-    padding: 0;
+  /*
+   * ONLY the phone link is changed here.
+   * The text link keeps its normal styling.
+   */
+
+  .hero-ctas a[href^="tel:"] {
+    display: inline !important;
+    width: auto !important;
+    min-height: auto !important;
+
+    padding: 0 !important;
+
+    color: var(--pink) !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+
+    white-space: nowrap;
+    text-decoration: none !important;
+    transform: none !important;
+
+    cursor: default !important;
+  }
+
+  .hero-ctas a[href^="tel:"]:hover {
+    color: var(--pink-dark) !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    text-decoration: underline !important;
+
+    cursor: default !important;
+  }
+
+  /*
+   * The Text Us link is NOT affected by the phone styling.
+   * It remains a normal desktop text link.
+   */
+
+  .hero-ctas a[href^="sms:"] {
     color: var(--silver);
     background: transparent;
     border: 0;
     box-shadow: none;
+
     font-size: 15px;
     font-weight: 600;
-    transform: none;
+
+    cursor: pointer;
   }
 
-  .hero-ctas .btn .icon {
-    display: none;
-  }
-
-  .hero-ctas .btn:hover {
+  .hero-ctas a[href^="sms:"]:hover {
     color: var(--white);
     background: transparent;
     border: 0;
     box-shadow: none;
     transform: none;
+  }
+
+  .hero-ctas .btn .icon {
+    display: none;
   }
 
 
@@ -1575,11 +1605,6 @@ textarea:focus-visible {
 
 @media (max-width: 767px) {
 
-  /*
-   * These sections remain hidden on phones as in the
-   * existing mobile design.
-   */
-
   #services,
   #how-it-works,
   #faq {
@@ -1625,11 +1650,6 @@ textarea:focus-visible {
   .hero-sub {
     font-size: 16px;
   }
-
-  /*
-   * Keep Call/Text buttons stacked on mobile.
-   * This is the important fix for the white strip.
-   */
 
   .hero-ctas {
     display: flex;
@@ -1804,36 +1824,15 @@ textarea:focus-visible {
   opacity: 0.5;
 }
 
-
-/* ==========================================================
-   HERO — CALL OR TEXT PHONE NUMBER
-   Desktop: Pink text only
-   Mobile: Existing pink button remains
-   ========================================================== */
-
 @media (min-width: 768px) {
-
-  .hero-ctas a[href^="tel:"] {
-    display: inline !important;
-    width: auto !important;
-    min-height: auto !important;
-
-    padding: 0 !important;
-
+  .hero-ctas a[href^="tel:"]:hover {
     color: var(--pink) !important;
     background: transparent !important;
     border: 0 !important;
-    border-radius: 0 !important;
     box-shadow: none !important;
-
-    font-size: 18px !important;
-    font-weight: 700 !important;
-    line-height: 1.4 !important;
-
-    text-decoration: none !important;
     transform: none !important;
+    text-decoration: none !important;
+    cursor: default !important;
   }
-
-
-  
 }
+

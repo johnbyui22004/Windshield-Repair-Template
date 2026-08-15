@@ -1066,6 +1066,16 @@ textarea:focus-visible {
 }
 
 
+
+.accordion-trigger:hover {
+  color: var(--pink);
+  background: var(--pink-soft);
+}
+
+.accordion-trigger[aria-expanded="true"] {
+  color: var(--pink);
+}
+
 /* ==========================================================
    CONTACT / QUESTION FORM
    ========================================================== */
@@ -1606,8 +1616,7 @@ textarea:focus-visible {
 @media (max-width: 767px) {
 
   #services,
-  #how-it-works,
-  #faq {
+  #how-it-works {
     display: none;
   }
 
@@ -1835,4 +1844,3 @@ textarea:focus-visible {
     cursor: default !important;
   }
 }
-
